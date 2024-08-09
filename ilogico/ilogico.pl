@@ -135,6 +135,5 @@ precioItemPaquete(Paquete, Precio) :-
 
 precioItem(mp3(_, Duracion), Precio) :-
     Precio is Duracion * 0,42.
-
 precioItem(libro(Precio), Precio).
 precioItem( productoEnOferta(_, PrecioOferta), PrecioOferta).
