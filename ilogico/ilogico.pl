@@ -67,11 +67,17 @@ inFraganti(Delito, Delincuente) :-
     length(Testigos, Cantidad),
     Cantidad > 0.
 
+% CORRECCION
+
+inFraganti(Delito, Delincuente) :-
+    cometio(Delito, Delincuente),
+    testigo(Delito, _).
+
 % Punto 4
 
 % No genera nada y por ende no hay inversibilidad
 viejoMaestro(Pensador) :-
-    pensamiento(Pensador, _), % Con esto tendremos inversibilidad
+    pensamiento(Pensador, _), % Con esto tendremos inversibilidad | CORRECCION
     forall(pensamiento(Pensador, Pensamiento), llegaANuestrosDias(Pensamiento)).
     
 % PUNTO 5
@@ -99,7 +105,7 @@ puedeComer(analia, Comida) :-
 comidaVegana(Ingrediente) :-
     not(contieneCarne(Ingrediente)),
     not(contieneHuevo(Ingrediente)),
-    not(contieneLeche(Ingrediente))
+    not(contieneLeche(Ingrediente)).
     
 puedeComer(evaristo, asado).    
 
@@ -108,7 +114,9 @@ puedeComer(evaristo, asado).
 costoEnvio(Paquete, PrecioTotal) :-
     findall(PrecioItem, precioItemPaquete(Paquete, PrecioItem), Precios),
     sumlist(Precios, PrecioTotal).
-    
+
+% REPETICION DE LOGICA
+
 precioItemPaquete(Paquete, Precio) :-
     itemPaquete(Paquete, libro(Precio)).
     
@@ -118,4 +126,15 @@ precioItemPaquete(Paquete, Precio) :-
     
 precioItemPaquete(Paquete, PrecioOferta) :-
     itemPaquete(Paquete, productoEnOferta(_, PrecioOferta)).
-    
+
+% CORRECCION
+
+precioItemPaquete(Paquete, Precio) :-
+    itemPaquete(Paquete, Item),
+    precioItem(Item, Precio).
+
+precioItem(mp3(_, Duracion), Precio) :-
+    Precio is Duracion * 0,42.
+
+precioItem(libro(Precio), Precio).
+precioItem( productoEnOferta(_, PrecioOferta), PrecioOferta).
