@@ -68,7 +68,7 @@ cubaLibre(Pais) :-
 % leFaltaMucho/2: relaciona a un jugador si está en un continente pero le falta ocupar otros 2 países o más.
 leFaltaMucho(Jugador, Continente) :-
     estaEnContinente(Jugador, Continente),
-    not(ocupaAlMenos2(Jugador,Continente)).
+    not(ocupaAlMenos2(Jugador, Continente)).
 
 ocupaAlMenos2(Jugador, Continente) :-
     estaEnEsePaisYContinente(Continente, UnPais, Jugador),
@@ -84,7 +84,7 @@ estaEnEsePaisYContinente(Jugador, Pais, Continente) :-
 sonLimitrofes(Pais1, Pais2) :-
     limitrofes(Pais1, Pais2).
 
-sonLimitrofes(PAis1, Pais2) :-
+sonLimitrofes(Pais1, Pais2) :-
     limitrofes(Pais2, Pais1).
 
 %%%%%%%%%%%%%%%%%%%    EJERCICIO 6   %%%%%%%%%%%%%%%%%%%
@@ -107,3 +107,8 @@ jugador(Jugador) :-
 
 %%%%%%%%%%%%%%%%%%%    EJERCICIO 8   %%%%%%%%%%%%%%%%%%%
 % esCompartido/1: un continente es compartido si hay dos o más jugadores en él.
+
+esCompartido(Continente) :-
+    estaEnContinente(UnJugador, Continente),
+    estaEnContinente(OtroJugador, Continente),
+    UnJugador \= OtroJugador.
