@@ -119,3 +119,18 @@ viajeFacil(Estacion1, Estacion2) :-
     member(UnaEstacion, Combinaciones),
     member(UnaEstacion, Estaciones1).
 */
+
+viajeFacil(Estacion1, Estacion2) :-
+    combinacionPara(Estacion1, Combinacion1),
+    combinacionPara(Estacion2, Combinacion2),
+    mismaCombinacion(Combinacion1, Combinacion2).
+
+combinacionPara(Estacion, Combinacion) :-
+    estaEn(Linea, Estacion),
+    linea(Linea, Estaciones),
+    member(Combinacion, Estaciones).
+
+mismaCombinacion(Estacion1, Estacion2) :-
+    combinacion(Combinacion),
+    member(Estacion1, Combinacion),
+    member(Estacion2, Combinacion).
