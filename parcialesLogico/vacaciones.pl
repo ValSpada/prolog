@@ -102,4 +102,4 @@ sonGasoleros(Destino) :-
 
 %%%%%%%%%%        PUNTO 5       %%%%%%%%%%
 
-% Explosion combinatoria, no se hace (no me linches Fede).sonGasoler
+% Explosion combinatoria, no se hace (no me linches Fede).
